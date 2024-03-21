@@ -8,7 +8,7 @@ const Footer = () => {
                 <div className="w-12 h-auto">
                     <AJLogo className="text-primary" />
                 </div>
-                <p className="text-base">Designed and Built by <a className="hover:underline" href="https://ajbatanes11.github.io/my-portfolio/" target="_blank" rel="noopener noreferrer">AJ Batanes</a> ©2024</p>
+                <p className="text-base">Designed and Built by <a className="underline hover:font-semibold" href="https://ajbatanes11.github.io/my-portfolio/" target="_blank" rel="noopener noreferrer">AJ Batanes</a> ©2024</p>
             </div>
         </footer>
     );

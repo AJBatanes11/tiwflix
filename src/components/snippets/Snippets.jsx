@@ -6,7 +6,7 @@ import LoaderIcon from '../assets/loader.svg';
 
 export const PageContainer = ({ children }) => {
     return (
-        <div className="px-10 py-16 relative md:py-20 h-full w-full">
+        <div className="px-10 py-16 md:py-20 h-full w-full">
             {children}
         </div>
     );
