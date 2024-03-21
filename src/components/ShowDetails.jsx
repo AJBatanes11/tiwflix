@@ -131,7 +131,7 @@ const ShowDetails = () => {
         <PageContainer>
             {loaderStatus ? <Loader /> :
                 (details ? (
-                    <><div className="h-[80vh] w-full flex flex-col mb-10 bg-quinary">
+                    <><div className="h-[80vh] w-full flex relative flex-col mb-10 bg-quinary">
                         <MediaPlayer category={category} id={id} season={season} episode={episode} />
                         {category === "tv" ?
                             <div className="text-primary flex flex-row flex-wrap sm:flex-nowrap justify-center m-0 md:p-2 text-center gap-3 md:gap-5 lg:gap-10">

@@ -39,7 +39,7 @@ const MainCarousel = ({ category }) => {
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     pauseOnHover: false,
     adaptiveHeight: true,
   };
@@ -59,9 +59,8 @@ const MainCarousel = ({ category }) => {
               {listData.map((item, index) => (
                 <div key={item.id}>
                   <div className="relative h-full w-auto flex justify-center items-center">
-
-                    <div className=" w-4/5 md:w-3/5 mt-20 mb-10 md:m-20 grid grid-cols-1 md:grid-cols-[1fr,2fr] gap-10 text-center items-center justify-center content-center">
-                      <div className="w-full h-auto relative">
+                    <div className=" w-5/6 md:w-4/5 lg:w-3/5 mt-16 mb-10 md:m-20 grid grid-cols-1 md:grid-cols-[1fr,2fr] gap-5 md:gap-10 text-center items-center justify-center content-center">
+                      <div className="w-full h-auto m-auto relative">
                         {item.poster_path ? (
                           <img className="h-auto max-w-full" src={`https://image.tmdb.org/t/p/original/${item.poster_path}`} alt={item.title || item.name} />
                         ) : (
@@ -78,8 +77,8 @@ const MainCarousel = ({ category }) => {
                         <FireIcon className="w-5 h-auto fill-tertiary" /><p><b>{`#${index + 1}`}</b> in Trending</p>
                         </div>
                         <h1 className="font-bold text-2xl md:text-4xl">{item.title || item.name} {item.media_type === 'movie' ? (item.release_date ? `(${item.release_date.substring(0, 4)})` : '') : (item.first_air_date ? `(${item.first_air_date.substring(0, 4)})` : '')}</h1>
-                        <p>{item.overview}</p>
-                        <button className={`${item.media_type === 'tv' ? 'bg-blue-500' : 'bg-red-500'} hover:bg-opacity-75 transition duration-300 ease-in-out rounded-sm py-2 p-3 m-auto w-3/4 md:w-1/2 lg:w-1/4 font-semibold`}>
+                        <p className="line-clamp-3 md:line-clamp-4 overflow-hidden">{item.overview}</p>
+                        <button className={`${item.media_type === 'tv' ? 'bg-blue-500' : 'bg-red-500'} hover:bg-opacity-75 transition duration-300 ease-in-out rounded-sm py-2 px-3 m-auto w-3/4 md:w-1/2 lg:w-1/4 font-semibold`}>
                           <Link to={`/${item.media_type}/${item.id}${item.media_type === "tv" ? "/season/1/episode/1" : ""}`}>
                             Watch Now
                           </Link>
