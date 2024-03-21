@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/tiwflix/static/css/main.f4842104.css",
-    "main.js": "/tiwflix/static/js/main.b66ec61b.js",
+    "main.js": "/tiwflix/static/js/main.4c7df9aa.js",
     "static/js/453.d0954881.chunk.js": "/tiwflix/static/js/453.d0954881.chunk.js",
     "static/media/placeholder.jpg": "/tiwflix/static/media/placeholder.66a473d19401ed2db4ba.jpg",
     "static/media/slick.svg": "/tiwflix/static/media/slick.2630a3e3eab21c607e21.svg",
@@ -11,11 +11,11 @@
     "index.html": "/tiwflix/index.html",
     "static/media/loader.svg": "/tiwflix/static/media/loader.13bf88352357ddd08de1f521b9af459b.svg",
     "main.f4842104.css.map": "/tiwflix/static/css/main.f4842104.css.map",
-    "main.b66ec61b.js.map": "/tiwflix/static/js/main.b66ec61b.js.map",
+    "main.4c7df9aa.js.map": "/tiwflix/static/js/main.4c7df9aa.js.map",
     "453.d0954881.chunk.js.map": "/tiwflix/static/js/453.d0954881.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f4842104.css",
-    "static/js/main.b66ec61b.js"
+    "static/js/main.4c7df9aa.js"
   ]
 }
