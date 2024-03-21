@@ -10,7 +10,7 @@ import CategoryPage from './components/CategoryPage';
 function App() {
   return (
     <>
-      <Router>
+      <Router basename="tiwflix">
         <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
