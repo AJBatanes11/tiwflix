@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/tiwflix/static/css/main.96c05c95.css",
-    "main.js": "/tiwflix/static/js/main.b537bef8.js",
+    "main.css": "/tiwflix/static/css/main.5a7fc608.css",
+    "main.js": "/tiwflix/static/js/main.8c374677.js",
     "static/js/453.d0954881.chunk.js": "/tiwflix/static/js/453.d0954881.chunk.js",
-    "static/media/placeholder.jpg": "/tiwflix/static/media/placeholder.66a473d19401ed2db4ba.jpg",
+    "static/media/placeholder.jpg": "/tiwflix/static/media/placeholder.6b4065b6db4e0e1663f9.jpg",
     "static/media/slick.svg": "/tiwflix/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/tiwflix/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/tiwflix/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/tiwflix/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/tiwflix/index.html",
     "static/media/loader.svg": "/tiwflix/static/media/loader.13bf88352357ddd08de1f521b9af459b.svg",
-    "main.96c05c95.css.map": "/tiwflix/static/css/main.96c05c95.css.map",
-    "main.b537bef8.js.map": "/tiwflix/static/js/main.b537bef8.js.map",
+    "main.5a7fc608.css.map": "/tiwflix/static/css/main.5a7fc608.css.map",
+    "main.8c374677.js.map": "/tiwflix/static/js/main.8c374677.js.map",
     "453.d0954881.chunk.js.map": "/tiwflix/static/js/453.d0954881.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.96c05c95.css",
-    "static/js/main.b537bef8.js"
+    "static/css/main.5a7fc608.css",
+    "static/js/main.8c374677.js"
   ]
 }
