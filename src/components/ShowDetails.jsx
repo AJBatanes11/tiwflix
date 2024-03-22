@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { PageContainer, convertMinutesToHoursAndMinutes, PreviewDetails, MediaPlayer, ErrorMessage, getYearFromDate } from './snippets/Snippets';
+import { PageContainer, convertMinutesToHoursAndMinutes, PreviewDetails, MediaPlayer, ErrorMessage, getYearFromDate, RichText } from './snippets/Snippets';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchDetails, fetchCredits, fetchSeason, fetchEpisode } from './utils/tmdb';
+import { fetchDetails, fetchCredits, fetchSeason } from './utils/tmdb';
 import Loader from './snippets/Loader';
+import ShowSimilar from './snippets/ShowSimilar';
+import EpisodeSelector from './snippets/EpisodeSelector';
 
 const ShowDetails = () => {
     const [details, setDetails] = useState(null);
     const [seasonDetails, setSeasonDetails] = useState(null);
-    const [episodeDetails, setEpisodeDetails] = useState(null);
     const [credits, setCredits] = useState(null);
     const [loaderStatus, setLoaderStatus] = useState(false);
 
     const navigate = useNavigate();
     let { id, category, season, episode } = useParams();
-    let handlePrevButton, hasPreviousEpisode, hasPreviousSeason;
-    let handleSeasonChange, handleEpisodeChange;
-    let handleNextButton, hasNextEpisode, hasNextSeason;
+
+    let handlePrevButton, hasPreviousEpisode, hasPreviousSeason, handleSeasonChange, handleEpisodeChange, handleNextButton, hasNextEpisode, hasNextSeason;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,10 +25,6 @@ const ShowDetails = () => {
                 if (season) {
                     const SeasonFetched = await fetchSeason(category, id, season);
                     setSeasonDetails(SeasonFetched);
-                }
-                if (episode) {
-                    const EpisodeFetched = await fetchEpisode(category, id, season, episode);
-                    setEpisodeDetails(EpisodeFetched);
                 }
                 const CreditsFetched = await fetchCredits(category, id);
                 setDetails(DetailsFetched);
@@ -59,9 +55,13 @@ const ShowDetails = () => {
 
         const nextSeasonNumber = parseInt(season, 10) + 1;
         hasNextSeason = details?.seasons.some(season => season.season_number === nextSeasonNumber);
-
         const nextEpisodeNumber = parseInt(episode, 10) + 1;
         hasNextEpisode = seasonDetails?.episodes.some(episode => episode.episode_number === nextEpisodeNumber);
+        
+        const previousSeasonNumber = parseInt(season, 10) - 1;
+        hasPreviousSeason = details?.seasons.some(season => season.season_number === previousSeasonNumber);
+        const previousEpisodeNumber = parseInt(episode, 10) - 1;
+        hasPreviousEpisode = seasonDetails?.episodes.some(episode => episode.episode_number === previousEpisodeNumber);
 
         handleNextButton = (e) => {
             if (hasNextEpisode) {
@@ -75,12 +75,6 @@ const ShowDetails = () => {
                 e.target.disabled = true;
             }
         }
-
-        const previousSeasonNumber = parseInt(season, 10) - 1;
-        hasPreviousSeason = details?.seasons.some(season => season.season_number === previousSeasonNumber);
-
-        const previousEpisodeNumber = parseInt(episode, 10) - 1;
-        hasPreviousEpisode = seasonDetails?.episodes.some(episode => episode.episode_number === previousEpisodeNumber);
 
         handlePrevButton = (e) => {
             if (hasPreviousEpisode) {
@@ -109,7 +103,7 @@ const ShowDetails = () => {
         return date.toLocaleDateString('en-US', options);
     };
 
-    const formattedDate = details ? (category === 'movie' ? formatDate(details.release_date) : (getYearFromDate(details?.first_air_date)) + " - " + getYearFromDate(details.last_air_date)) : "-";
+    const formattedDate = details ? (category === 'movie' ? formatDate(details.release_date) : (getYearFromDate(details.first_air_date)) + " - " + getYearFromDate(details.last_air_date)) : "-";
 
     const formattedCasts = credits ? credits.cast && credits.cast.map((actor, index) => (
         <span key={actor.id}>
@@ -127,67 +121,30 @@ const ShowDetails = () => {
 
     return (
         <PageContainer>
-            {loaderStatus ? <Loader /> :
-                (details ? (
-                    <><div className="h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] gap-5 w-full flex relative flex-col mb-10 bg-quinary">
-                        <MediaPlayer category={category} id={id} season={season} episode={episode} />
-                        {category === "tv" ?
-                            <div className="text-primary flex flex-row flex-wrap sm:flex-nowrap justify-center m-0 md:p-2 text-center gap-3 md:gap-5 lg:gap-10">
-                                <div className="w-2/5 order-3 sm:w-1/4 sm:order-1 h-auto flex justify-start">
-                                    <button
-                                        className="w-full md:py-2 md:px-6 rounded-sm bg-quaternary border border-neutral"
-                                        onClick={handlePrevButton}
-                                        disabled={!hasPreviousEpisode && !hasPreviousSeason}
-                                    >
-                                        Prev
-                                    </button>
-                                </div>
-                                <div className="w-full order-1 sm:w-1/2 sm:order-2 flex flex-row justify-center gap-1 md:gap-2">
-                                    <label htmlFor="seasons" className="mt-auto mb-auto">Season:</label>
-                                    <select
-                                        className="bg-quaternary w-full h-full px-2 rounded-sm border border-neutral"
-                                        name="seasons"
-                                        id="seasons"
-                                        value={season}
-                                        onChange={handleSeasonChange}
-                                    >
-                                        {details.seasons.map(season => (
-                                            <option key={season.id} value={season.season_number}>
-                                                Season {season.season_number}: {season.name}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div className="w-full order-2 sm:w-1/2 sm:order-3 flex flex-row justify-center gap-1 md:gap-2">
-                                    <label htmlFor="episodes" className="mt-auto mb-auto">Episode:</label>
-                                    <select
-                                        className="bg-quaternary w-full h-full px-2 rounded-sm border border-neutral"
-                                        name="episodes"
-                                        id="episodes"
-                                        value={episode}
-                                        onChange={handleEpisodeChange}
-                                    >
-                                        {seasonDetails.episodes.map(episode => (
-                                            <option key={episode.id} value={episode.episode_number}>
-                                                Episode {episode.episode_number}: {episode.name}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div className="w-2/5 order-4 sm:w-1/4 sm:order-4 h-auto flex justify-end">
-                                    <button
-                                        className="w-full md:py-2 md:px-6 rounded-sm bg-quaternary border border-neutral"
-                                        onClick={handleNextButton}
-                                        disabled={!hasNextEpisode && !hasNextSeason}
-                                    >
-                                        Next
-                                    </button>
-                                </div>
-                            </div>
-                            : ""
-                        }
-                    </div>
-
+            {loaderStatus ? (
+                <Loader />
+            ) : (
+                details ? (
+                    <>
+                        <div className="h-[20vh] sm:h-[25vh] md:h-[60vh] lg:h-[70vh] gap-5 w-full flex relative flex-col mb-10 bg-quinary">
+                            <MediaPlayer category={category} id={id} season={season} episode={episode} />
+                            {category === "tv" && seasonDetails ? (
+                                <EpisodeSelector
+                                    details={details}
+                                    seasonDetails={seasonDetails}
+                                    season={season}
+                                    episode={episode}
+                                    handleSeasonChange={handleSeasonChange}
+                                    handleEpisodeChange={handleEpisodeChange}
+                                    handlePrevButton={handlePrevButton}
+                                    handleNextButton={handleNextButton}
+                                    hasPreviousEpisode={hasPreviousEpisode}
+                                    hasPreviousSeason={hasPreviousSeason}
+                                    hasNextEpisode={hasNextEpisode}
+                                    hasNextSeason={hasNextSeason}
+                                />
+                            ) : null}
+                        </div>
                         <div className="flex flex-col md:flex-row gap-10 h-auto relative">
                             {details.poster_path && (
                                 <div className="w-full md:sticky top-20 md:left-0 h-fit">
@@ -207,12 +164,19 @@ const ShowDetails = () => {
                                     <PreviewDetails label="Casts" value={formattedCasts} />
                                 </div>
                             </div>
-                        </div></>
+                        </div>
+                        <div className="mt-10 h-auto relative">
+                            <RichText heading="You may also like" />
+                            <ShowSimilar category={category} id={id} />
+                        </div>
+                    </>
+                ) : (
+                    <ErrorMessage />
                 )
-                    : <ErrorMessage />)
-            }
+            )}
         </PageContainer>
     );
+    
 }
 
 export default ShowDetails;
