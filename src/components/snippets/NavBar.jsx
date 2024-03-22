@@ -9,7 +9,6 @@ const NavBar = () => {
 
     const hamburgerHandle = () => {
         setIsOpen(!isOpen)
-        console.log(isOpen);
     }
 
     useEffect(() => {
@@ -33,7 +32,7 @@ const NavBar = () => {
                 }}
             >
                 <div className="flex justify-between items-center w-full text-primary">
-                    <ul className="hidden lg:flex space-x-4 items-center">
+                    <ul className="hidden md:flex space-x-4 items-center">
                         <li className="text-tertiary font-bold text-2xl"><Link to="/">TIWFLIX</Link></li>
                         <li className='font-bold pointer-events-none'>Home</li>
                         <li className="float-left overflow-hidden">
@@ -46,10 +45,18 @@ const NavBar = () => {
                                 <Link to="/tv">TV Shows</Link>
                             </button>
                         </li>
+                        <li>
+                            <p>|</p>
+                        </li>
+                        <li className="hidden md:block">
+                            <button className="flex items-center">
+                                <Link to="/about">About</Link>
+                            </button>
+                        </li>
                     </ul>
-                    <ul className="flex lg:hidden space-x-4 items-center">
-                        <li className="">
-                            <button onClick={hamburgerHandle}>
+                    <ul className="flex md:hidden space-x-4 justify-center items-center">
+                        <li className="flex">
+                            <button className="m-auto" onClick={hamburgerHandle}>
                                 <HamburgerIcon className="w-5 fill-primary" />
                             </button>
                         </li>
@@ -61,17 +68,12 @@ const NavBar = () => {
                                 <SearchButton className="w-5 fill-primary cursor-pointer" />
                             </Link>
                         </li>
-                        <li className="float-left overflow-hidden">
-                            <button className="flex items-center">
-                                <Link to="/about">About</Link>
-                            </button>
-                        </li>
                     </ul>
                 </div>
             </motion.nav>
             {/* Hamburger menu for mobile */}
             <motion.div
-                className={`lg:hidden fixed top-0 left-0 w-full h-full bg-secondary z-50 transition-opacity duration-300 ${isOpen ? 'opacity-95 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+                className={`md:hidden fixed top-0 left-0 w-full h-full bg-secondary z-50 transition-opacity duration-300 ${isOpen ? 'opacity-95 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: isOpen ? 1 : 0 }}
             >
@@ -83,10 +85,10 @@ const NavBar = () => {
                         <CloseIcon className="w-5 fill-primary" />
                     </button>
                 </div>
-                <div className="flex flex-col items-center justify-normal h-full">
-                    <Link to="/movie" className="text-white my-2" onClick={hamburgerHandle}>Movies</Link>
-                    <Link to="/tv" className="text-white my-2" onClick={hamburgerHandle}>TV Shows</Link>
-                    <Link to="/about" className="text-white my-2" onClick={hamburgerHandle}>About</Link>
+                <div className="flex flex-col items-center justify-normal text-primary text-lg font-semibold gap-2 h-full">
+                    <Link to="/movie" className="" onClick={hamburgerHandle}>Movies</Link>
+                    <Link to="/tv" className="" onClick={hamburgerHandle}>TV Shows</Link>
+                    <Link to="/about" className="" onClick={hamburgerHandle}>About</Link>
                 </div>
             </motion.div>
         </>

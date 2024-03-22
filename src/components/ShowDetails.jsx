@@ -82,8 +82,6 @@ const ShowDetails = () => {
         const previousEpisodeNumber = parseInt(episode, 10) - 1;
         hasPreviousEpisode = seasonDetails?.episodes.some(episode => episode.episode_number === previousEpisodeNumber);
 
-        console.log(hasPreviousSeason, details, previousSeasonNumber)
-
         handlePrevButton = (e) => {
             if (hasPreviousEpisode) {
                 const url = `/${category}/${id}/season/${season}/episode/${previousEpisodeNumber}`;

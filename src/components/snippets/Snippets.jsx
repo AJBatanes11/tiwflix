@@ -6,7 +6,7 @@ import LoaderIcon from '../assets/loader.svg';
 
 export const PageContainer = ({ children }) => {
     return (
-        <div className="px-10 py-16 md:py-20 h-full w-full">
+        <div className="px-10 pt-16 pb-10 md:py-16 h-full w-full">
             {children}
         </div>
     );
@@ -97,7 +97,7 @@ export const ErrorMessage = () => {
 export const RichText = ({ heading, subheading, className }) => {
     return (
         <div className={className}>
-            <div className="font-bold text-lg md:text-2xl my-4">{heading}</div>
+            <div className="font-bold text-xl md:text-2xl my-4">{heading}</div>
             <div className="my-4">{subheading}</div>
         </div>
     )

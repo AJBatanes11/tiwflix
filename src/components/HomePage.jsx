@@ -8,7 +8,7 @@ const HomePage = () => {
         <>
             <MainCarousel category="all" />
             <PageContainer>
-                <RichText heading="Popular Movies" className="my-5" />
+                <RichText heading="Popular Movies" />
                 <ShowListedCategory category="movie" listType="popular" />
                 <RichText heading="Popular TV Shows" />
                 <ShowListedCategory category="tv" listType="popular" />

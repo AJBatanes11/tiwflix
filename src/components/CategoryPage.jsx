@@ -8,9 +8,9 @@ const CategoryPage = ({ category }) => {
         <>
             <MainCarousel category={category} />
             <PageContainer>
-                <RichText heading="Popular Now" className="my-5" />
+                <RichText heading="Popular Now" />
                 <ShowListedCategory category={category} listType="popular" />
-                <RichText heading="Top Rated" className="my-5" />
+                <RichText heading="Top Rated" />
                 <ShowListedCategory category={category} listType="top_rated" />
             </PageContainer>
         </>
