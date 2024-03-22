@@ -126,7 +126,7 @@ const ShowDetails = () => {
             ) : (
                 details ? (
                     <>
-                        <div className="h-[20vh] sm:h-[25vh] md:h-[60vh] lg:h-[70vh] gap-5 w-full flex relative flex-col mb-10 bg-quinary">
+                        <div className="h-auto gap-5 w-full flex flex-col mb-10 bg-quinary">
                             <MediaPlayer category={category} id={id} season={season} episode={episode} />
                             {category === "tv" && seasonDetails ? (
                                 <EpisodeSelector

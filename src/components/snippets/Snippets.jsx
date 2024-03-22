@@ -54,7 +54,7 @@ export const MediaPlayer = ({ category, id, season, episode }) => {
     };
 
     return (
-        <div className="h-full w-full flex relative">
+        <div className="h-[20vh] sm:h-[25vh] md:h-[60vh] lg:h-[70vh] w-full flex relative">
             {error && (
                 <div className="flex flex-col items-center justify-center w-full h-full p-4">
                     <h1 className="">Error loading video player</h1>
